@@ -9,7 +9,8 @@ window.onload = function() {
         form.start();
     }
 
-    document.getElementById("submit").addEventListener("click", startForm);
-    document.getElementById("ingresos_mensuales").addEventListener("keyup", startForm);
-    document.getElementById("capital").addEventListener("keyup", startForm);
+    window.addEventListener("keyup", startForm);
+    document.addEventListener("click", startForm);
+    //document.getElementById("submit").addEventListener("click", startForm);
+    //document.getElementById("ingresos_mensuales").addEventListener("keyup", startForm);
 };
