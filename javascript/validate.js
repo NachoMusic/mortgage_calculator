@@ -50,29 +50,6 @@ function Validate() {
             return discount;
         }
         var discount = associated_products();
-        /*function check_box() {
-            var checkboxes = document.getElementById("formulario_products").checkbox;
-            var cont = 0;
-            var suma = 0;
-            for (var x = 0; x < checkboxes.length; x++) {
-                if (checkboxes[x].checked) {
-                    cont = cont + 1;
-                }
-            }
-            if (cont === 1) {
-                suma = 0.25;
-            } else if (cont === 2) {
-                suma = 0.50;
-            } else if (cont === 3) {
-                suma = 0.75;
-            } else {
-                suma = 0;
-            }
-
-            return suma;
-        }
-        var int = check_box();*/
-
 
         if (interest_rate_type === "variable") {
             fixed_interest_type.readOnly = true;
@@ -86,6 +63,13 @@ function Validate() {
             interestApplied.value = fixed_interest - discount;
         }
         console.log(valid);
+        if (valid) {
+            var total = parseFloat((capital * interestApplied.value) / 12) /
+                (100 * (1 -
+                    Math.pow(1 + ((interestApplied.value / 12) / 100), (-1) *
+                        period * 12)));
+            monthly_quote.value = total;
+        }
     };
 }
 
