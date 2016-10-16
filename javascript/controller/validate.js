@@ -1,5 +1,5 @@
-var inherits = require('./inheritance');
-var Observer = require('./observer');
+var inherits = require('../inheritance');
+var Observer = require('../observer');
 
 function validate_num(num) {
     var valid = false;
@@ -29,8 +29,12 @@ function Validate() {
         var fixed_interest_type = document.getElementById('fixed_interest');
         var valid = true;
 
-        if (!validate_num(ingresos_mensuales))
+        if (!validate_num(ingresos_mensuales)) {
             valid = false;
+            document.getElementById('e_ingresos_mensuales').innerHTML = "Should be a number";
+        } else {
+            document.getElementById('e_ingresos_mensuales').innerHTML = "";
+        }
         if (!validate_num(capital))
             valid = false;
         if (!validate_num(period))
@@ -70,6 +74,9 @@ function Validate() {
                         period * 12)));
             monthly_quote.value = total;
         }
+        //////////////////////// Personal data /////////////////////////
+
+
     };
 }
 

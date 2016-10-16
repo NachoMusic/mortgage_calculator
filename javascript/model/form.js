@@ -1,5 +1,5 @@
-var inherits = require('./inheritance')
-var Subject = require('./subject');
+var inherits = require('../inheritance');
+var Subject = require('../subject');
 
 var Form = function(validate) {
     inherits(new Subject(), this);
