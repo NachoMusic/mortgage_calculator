@@ -35,10 +35,30 @@ function Validate() {
         } else {
             document.getElementById('e_ingresos_mensuales').innerHTML = "";
         }
-        if (!validate_num(capital))
+        if (!validate_num(capital)){
             valid = false;
-        if (!validate_num(period))
+            document.getElementById('e_capital').innerHTML = "Should be a number";
+        } else {
+            document.getElementById('e_capital').innerHTML = "";
+        }
+        if (!validate_num(euribor)){
             valid = false;
+            document.getElementById('e_euribor').innerHTML = "Should be a number";
+        } else {
+            document.getElementById('e_euribor').innerHTML = "";
+        }
+        if (!validate_num(differential)){
+            valid = false;
+            document.getElementById('e_differential').innerHTML = "Should be a number";
+        } else {
+            document.getElementById('e_differential').innerHTML = "";
+        }
+        if (!validate_num(period)){
+            valid = false;
+            document.getElementById('e_period').innerHTML = "Should be a number";
+        } else {
+            document.getElementById('e_period').innerHTML = "";
+        }
 
         function associated_products() {
             var homeInsurance = document.getElementById("homeInsurance").checked;
@@ -73,6 +93,9 @@ function Validate() {
                     Math.pow(1 + ((interestApplied.value / 12) / 100), (-1) *
                         period * 12)));
             monthly_quote.value = total;
+
+            var interestTotal = (total*12)-capital;
+            document.getElementById('interestTotal').innerHTML = "At the end you pay " + interestTotal + " interest";
         }
         //////////////////////// Personal data /////////////////////////
 
