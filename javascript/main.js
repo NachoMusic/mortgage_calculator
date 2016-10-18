@@ -9,6 +9,7 @@ window.onload = function() {
         form.start();
     };
 
+    document.getElementById('submit').disabled = true;
     window.addEventListener("keyup", startForm);
     document.addEventListener("click", startForm);
     //document.getElementById("submit").addEventListener("click", startForm); usar onfocus onblur

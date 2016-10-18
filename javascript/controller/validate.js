@@ -9,10 +9,28 @@ function validate_num(num) {
     }
     return valid;
 }
+function validate_nif(nif) {
+    var valid = false;
+    if (dni.length > 0) {
+        var regexp = /^([0-9]{8})[A-Za-z]{1}$/i;
+        valid = regexp.test(nif);
+    }
+    return valid;
+}
+function validate_phone(phone) {
+    var valid = false;
+    if (phone.length > 0) {
+        var regexp = /^((\+?34([ \t|\-])?)?[9|6|7]((\d{1}([ \t|\-])?[0-9]{3})|(\d{2}([ \t|\-])?[0-9]{2}))([ \t|\-])?[0-9]{2}([ \t|\-])?[0-9]{2})$/;
+        valid = regexp.test(phone);
+    }
+    return valid;
+}
 
 function Validate() {
     inherits(new Observer(), this);
     this.Update = function(id_form) {
+        var submitbutton = document.getElementById('submit');
+        submitbutton.disabled = true;
         // vars for values
         var ingresos_mensuales = document.getElementById('ingresos_mensuales').value;
         var capital = document.getElementById('capital').value;
@@ -35,19 +53,19 @@ function Validate() {
         } else {
             document.getElementById('e_ingresos_mensuales').innerHTML = "";
         }
-        if (!validate_num(capital)){
+        if (!validate_num(capital)) {
             valid = false;
             document.getElementById('e_capital').innerHTML = "Should be a number";
         } else {
             document.getElementById('e_capital').innerHTML = "";
         }
-        if (!validate_num(euribor)){
+        if (!validate_num(euribor+"")) {
             valid = false;
             document.getElementById('e_euribor').innerHTML = "Should be a number";
         } else {
             document.getElementById('e_euribor').innerHTML = "";
         }
-        if (!validate_num(differential)){
+        if (!validate_num(differential+"")) {
             valid = false;
             document.getElementById('e_differential').innerHTML = "Should be a number";
         } else {
@@ -97,9 +115,19 @@ function Validate() {
             var interestTotal = (total*12)-capital;
             document.getElementById('interestTotal').innerHTML = "At the end you pay " + interestTotal + " interest";
         }
+
         //////////////////////// Personal data /////////////////////////
+        var nif = document.getElementById('nif').value;
+        var nombre = document.getElementById('nombre').value;
+        var surname1 = document.getElementById('surname1').value;
+        var surname2 = document.getElementById('surname2').value;
+        var age = document.getElementById('age').value;
+        var mobile = document.getElementById('mobile').value;
+        var email = document.getElementById('email').value;
 
-
+        if(valid){
+            submitbutton.disabled=false;
+        }
     };
 }
 
